@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Search from "./components/Search";
 import Spinner from "./components/Spinner";
+import MovieCard from "./components/MovieCard";
 
 // const API_BASE_URL = 'https://deckofcardsapi.com/api/deck/'
 const API_BASE_URL = "https://restcountries.com/v3.1";
@@ -78,7 +79,7 @@ function App() {
           ) : (
               <ul className="text-white">
                 {movieList.map((movie, index) => (
-                  <li key={index}>{movie.flag +" " + movie.name.common}</li>
+                  <MovieCard key={movie.id} movie={movie}/>
                 ))}
               </ul>
           )}

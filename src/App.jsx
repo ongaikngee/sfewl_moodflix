@@ -3,7 +3,7 @@ import "./App.css";
 import Search from "./components/Search";
 
 // const API_BASE_URL = 'https://deckofcardsapi.com/api/deck/'
-const API_BASE_URL = "https://restcountries.com/v3.1/name";
+const API_BASE_URL = "https://restcountries.com/v3.1";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -25,7 +25,8 @@ function App() {
     setIsLoading(true);
     setErrorMessage("");
     try {
-      const endpoint = `${API_BASE_URL}/peru`;
+      const endpoint = `${API_BASE_URL}/name/singapore`;
+      // const endpoint = `${API_BASE_URL}/lang/chinese`;
       const response = await fetch(endpoint, API_OPTIONS);
 
       // Error logging
@@ -40,9 +41,6 @@ function App() {
         setMovieList([]);
         return;
       }
-      console.log("hello");
-      console.log(data);
-
       // Setting list into variable
       setMovieList(data);
     } catch (e) {
@@ -72,19 +70,17 @@ function App() {
 
         <section className="all-movies">
           <h2>All Movies</h2>
-          {/* <h1 className="text-white">{movieList[0]}</h1> */}
-          {/* <h1 className="text-white">{movieList[0] || "No movie"}</h1> */}
-          {/* {isLoading ? (
+          {isLoading ? (
             <p className="text-white">Loading....</p>
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
           ) : (
-            <ul>
-              {movieList.map((movie) => {
-                <p>{movie}</p>;
-              })}
-            </ul>
-          )} */}
+              <ul className="text-white">
+                {movieList.map((movie, index) => (
+                  <li key={index}>{movie.flag +" " + movie.name.common}</li>
+                ))}
+              </ul>
+          )}
         </section>
       </div>
     </main>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Search from "./components/Search";
+import Spinner from "./components/Spinner";
 
 // const API_BASE_URL = 'https://deckofcardsapi.com/api/deck/'
 const API_BASE_URL = "https://restcountries.com/v3.1";
@@ -25,8 +26,8 @@ function App() {
     setIsLoading(true);
     setErrorMessage("");
     try {
-      const endpoint = `${API_BASE_URL}/name/singapore`;
-      // const endpoint = `${API_BASE_URL}/lang/chinese`;
+      // const endpoint = `${API_BASE_URL}/name/singapore`;
+      const endpoint = `${API_BASE_URL}/lang/arabic`;
       const response = await fetch(endpoint, API_OPTIONS);
 
       // Error logging
@@ -71,7 +72,7 @@ function App() {
         <section className="all-movies">
           <h2>All Movies</h2>
           {isLoading ? (
-            <p className="text-white">Loading....</p>
+            <Spinner />
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
           ) : (
